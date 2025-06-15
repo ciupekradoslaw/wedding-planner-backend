@@ -1,2 +1,4 @@
 databaseChangeLog:
-  - 
+  - include:
+      file: db/changelog/local/0001_insert-guest-groups-with-guests.xml
+      context: local

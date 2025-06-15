@@ -2,8 +2,8 @@ package pl.rciupek.weddingplannerbackend.application.model;
 
 import lombok.Builder;
 
-import java.util.List;
+import java.util.UUID;
 
 @Builder(toBuilder = true)
-public record AddGuestGroupCommand(String name, List<String> guestNames) {
+public record AddGuestGroupResponse(UUID id, UUID token, String name) {
 }
