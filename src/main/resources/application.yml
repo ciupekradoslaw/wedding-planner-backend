@@ -24,3 +24,8 @@ spring:
     enabled: false
     change-log: classpath:/db/changelog/db.changelog-master.yaml
     contexts: local
+
+wedding-planner:
+  security:
+    jwt:
+      secret-key: 0deb14ea7ac92f72d4ea3d4570832ae4ac49a929dd56bcc037de68c584125ddb
