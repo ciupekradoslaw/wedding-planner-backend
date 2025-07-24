@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -28,6 +29,10 @@ public class JwtService {
     return claimsResolver.apply(claims);
   }
 
+  public String generateToken(final UserDetails userDetails) {
+    return generateToken(new HashMap<>(), userDetails);
+  }
+
   public String generateToken(final Map<String, Object> extraClaims, final UserDetails userDetails) {
     return Jwts.builder()
         .claims(extraClaims)
@@ -36,6 +41,19 @@ public class JwtService {
         .expiration(new Date(System.currentTimeMillis() + 1000 * 30))
         .signWith(getSignKey(), Jwts.SIG.HS256)
         .compact();
+  }
+
+  public boolean isTokenValid(final String token, final UserDetails userDetails) {
+    final String username = extractUsername(token);
+    return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+  }
+
+  private boolean isTokenExpired(final String token) {
+    return extractExpiration(token).before(new Date());
+  }
+
+  private Date extractExpiration(final String token) {
+    return extractClaim(token, Claims::getExpiration);
   }
 
   private Claims extractClaims(final String token) {
