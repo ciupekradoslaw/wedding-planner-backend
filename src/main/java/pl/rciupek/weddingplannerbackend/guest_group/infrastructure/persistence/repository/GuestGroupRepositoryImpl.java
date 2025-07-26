@@ -16,8 +16,8 @@ public class GuestGroupRepositoryImpl implements GuestGroupRepository {
 
   @Override
   public GuestGroup save(final GuestGroup guestGroup) {
-    final GuestGroupEntity entity = jpaRepository.save(GuestGroupMapper.INSTANCE.toEntity(guestGroup));
-    return GuestGroupMapper.INSTANCE.toDomain(entity);
+    final GuestGroupEntity entity = jpaRepository.save(GuestGroupMapper.INSTANCE.toGuestGroupEntity(guestGroup));
+    return GuestGroupMapper.INSTANCE.toGuestGroup(entity);
   }
 
   @Override

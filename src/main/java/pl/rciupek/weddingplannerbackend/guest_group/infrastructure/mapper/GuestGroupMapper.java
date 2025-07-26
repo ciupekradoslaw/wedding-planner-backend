@@ -10,6 +10,6 @@ import pl.rciupek.weddingplannerbackend.guest_group.infrastructure.persistence.e
 public interface GuestGroupMapper {
   GuestGroupMapper INSTANCE = Mappers.getMapper(GuestGroupMapper.class);
 
-  GuestGroupEntity toEntity(final GuestGroup guestGroup);
-  GuestGroup toDomain(final GuestGroupEntity guestGroupEntity);
+  GuestGroupEntity toGuestGroupEntity(final GuestGroup guestGroup);
+  GuestGroup toGuestGroup(final GuestGroupEntity guestGroupEntity);
 }

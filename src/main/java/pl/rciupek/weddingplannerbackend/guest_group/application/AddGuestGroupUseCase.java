@@ -1,4 +1,4 @@
-package pl.rciupek.weddingplannerbackend.guest_group.application.service;
+package pl.rciupek.weddingplannerbackend.guest_group.application;
 
 import lombok.RequiredArgsConstructor;
 import pl.rciupek.weddingplannerbackend.common.annotation.UseCase;

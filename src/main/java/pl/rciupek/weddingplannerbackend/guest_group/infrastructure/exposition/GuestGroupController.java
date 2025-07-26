@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.rciupek.weddingplannerbackend.guest_group.application.AddGuestGroupUseCase;
 import pl.rciupek.weddingplannerbackend.guest_group.application.model.AddGuestGroupCommand;
-import pl.rciupek.weddingplannerbackend.guest_group.application.model.AddGuestGroupRequestDto;
-import pl.rciupek.weddingplannerbackend.guest_group.application.model.AddGuestGroupResponseDto;
-import pl.rciupek.weddingplannerbackend.guest_group.application.service.AddGuestGroupUseCase;
+import pl.rciupek.weddingplannerbackend.guest_group.application.model.AddGuestGroupResponse;
 import pl.rciupek.weddingplannerbackend.guest_group.domain.model.GuestGroup;
 
 @RestController
@@ -20,9 +19,9 @@ public class GuestGroupController {
   private final AddGuestGroupUseCase addGuestGroupUseCase;
 
   @PostMapping(API_GUEST_GROUPS)
-  public ResponseEntity<AddGuestGroupResponseDto> addGuestGroup(@RequestBody final AddGuestGroupRequestDto request) {
-    final GuestGroup guestGroup = addGuestGroupUseCase.execute(new AddGuestGroupCommand(request.name(), request.guestNames()));
-    final AddGuestGroupResponseDto response = AddGuestGroupResponseDto.builder()
+  public ResponseEntity<AddGuestGroupResponse> addGuestGroup(@RequestBody final AddGuestGroupCommand addGuestGroupCommand) {
+    final GuestGroup guestGroup = addGuestGroupUseCase.execute(addGuestGroupCommand);
+    final AddGuestGroupResponse response = AddGuestGroupResponse.builder()
         .id(guestGroup.getId().id())
         .name(guestGroup.getName())
         .token(guestGroup.getToken().token())
