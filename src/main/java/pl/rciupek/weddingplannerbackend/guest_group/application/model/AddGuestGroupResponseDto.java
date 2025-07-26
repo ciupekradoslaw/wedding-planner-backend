@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.util.UUID;
 
 @Builder(toBuilder = true)
-public record AddGuestGroupResponse(UUID id, UUID token, String name) {
+public record AddGuestGroupResponseDto(UUID id, UUID token, String name) {
 }
