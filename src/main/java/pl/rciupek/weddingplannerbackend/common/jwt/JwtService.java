@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import pl.rciupek.weddingplannerbackend.user.domain.model.User;
 
 import javax.crypto.SecretKey;
 import java.util.Base64;
@@ -29,16 +30,16 @@ public class JwtService {
     return claimsResolver.apply(claims);
   }
 
-  public String generateToken(final UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+  public String generateToken(final User user) {
+    return generateToken(new HashMap<>(), user);
   }
 
-  public String generateToken(final Map<String, Object> extraClaims, final UserDetails userDetails) {
+  public String generateToken(final Map<String, Object> extraClaims, final User user) {
     return Jwts.builder()
         .claims(extraClaims)
-        .subject(userDetails.getUsername())
+        .subject(user.getUsername())
         .issuedAt(new Date(System.currentTimeMillis()))
-        .expiration(new Date(System.currentTimeMillis() + 1000 * 30))
+        .expiration(new Date(System.currentTimeMillis() + 1000 * 30 * 60))
         .signWith(getSignKey(), Jwts.SIG.HS256)
         .compact();
   }
