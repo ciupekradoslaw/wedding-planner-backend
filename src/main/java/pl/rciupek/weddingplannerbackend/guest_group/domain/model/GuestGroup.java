@@ -15,7 +15,8 @@ public class GuestGroup {
 
   public GuestGroup(final String name, final List<String> guestNames) {
     Assert.notNull(name, "Guest Group name must not be null");
-    Assert.notEmpty(members, "Guest Group members must not be empty");
+    Assert.notNull(guestNames, "Guest group names must not be empty");
+    Assert.notEmpty(guestNames, "Guest Group members must not be empty");
     this.id = new GuestGroupId();
     this.name = name;
     this.token = new GuestGroupToken();

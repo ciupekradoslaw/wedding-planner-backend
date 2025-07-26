@@ -23,7 +23,6 @@ import java.util.UUID;
 public class UserEntity implements UserDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(nullable = false, name = "U_ID")
   private UUID id;
 
