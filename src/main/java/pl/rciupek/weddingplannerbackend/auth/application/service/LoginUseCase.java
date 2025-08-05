@@ -28,6 +28,6 @@ public class LoginUseCase {
     final User user = userRepository.findByUsername(command.username());
     final String token = jwtService.generateToken(user);
 
-    return new AuthenticationResponseDto(token);
+    return new AuthenticationResponseDto(token, command.username());
   }
 }
