@@ -1,5 +1,6 @@
 package pl.rciupek.weddingplannerbackend.common.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,9 @@ public class SecurityConfiguration {
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
   private static final String[] WHITE_LIST_URL = {
-    "/api/auth/**"
+      "/api/auth/**",
+      "/api/guest-groups",
+      "/api/guest-groups/**"
   };
 
   @Bean
@@ -39,7 +42,12 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated()
         )
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        .exceptionHandling(exception -> exception.authenticationEntryPoint(
+            (request, response, authException) -> {
+              response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+            }
+        ));
 
     return http.build();
   }
