@@ -27,8 +27,7 @@ public class SecurityConfiguration {
 
   private static final String[] WHITE_LIST_URL = {
       "/api/auth/**",
-      "/api/guest-groups",
-      "/api/guest-groups/**"
+      "/h2-console/**",
   };
 
   @Bean

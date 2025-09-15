@@ -14,12 +14,13 @@ import pl.rciupek.weddingplannerbackend.user.infrastructure.persistence.reposito
 public class UserRepositoryImpl implements UserRepository {
 
   private final UserJpaRepository userJpaRepository;
+  private final UserMapper userMapper;
 
   @Override
   @Transactional
   public User save(final User user) {
-    final UserEntity entity = userJpaRepository.save(UserMapper.INSTANCE.toEntity(user));
-    return UserMapper.INSTANCE.toDomain(entity);
+    final UserEntity entity = userJpaRepository.save(userMapper.toEntity(user));
+    return userMapper.toDomain(entity);
   }
 
   @Override
@@ -28,6 +29,6 @@ public class UserRepositoryImpl implements UserRepository {
     final UserEntity entity = userJpaRepository.findByUsername(username)
         .orElseThrow();
 
-    return UserMapper.INSTANCE.toDomain(entity);
+    return userMapper.toDomain(entity);
   }
 }

@@ -1,10 +1,12 @@
 package pl.rciupek.weddingplannerbackend.guest_group.infrastructure.mapper;
 
+import org.mapstruct.Mapper;
 import pl.rciupek.weddingplannerbackend.common.mapper.IdMapper;
 import pl.rciupek.weddingplannerbackend.guest_group.domain.model.GuestGroupToken;
 
 import java.util.UUID;
 
+@Mapper(componentModel = "spring")
 public class GuestGroupTokenMapper implements IdMapper<GuestGroupToken, UUID> {
 
   @Override

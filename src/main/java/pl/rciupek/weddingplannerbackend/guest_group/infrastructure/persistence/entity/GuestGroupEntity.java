@@ -17,7 +17,7 @@ public class GuestGroupEntity {
   @Column(nullable = false, name = "GG_ID")
   private UUID id;
 
-  @Column(nullable = false, name = "GG_NAME ")
+  @Column(nullable = false, name = "GG_NAME")
   private String name;
 
   @Column(nullable = false, name = "GG_TOKEN")

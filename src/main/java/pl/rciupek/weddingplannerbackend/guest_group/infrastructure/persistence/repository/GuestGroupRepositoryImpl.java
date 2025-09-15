@@ -13,11 +13,12 @@ import pl.rciupek.weddingplannerbackend.guest_group.infrastructure.persistence.r
 public class GuestGroupRepositoryImpl implements GuestGroupRepository {
 
   private final GuestGroupJpaRepository jpaRepository;
+  private final GuestGroupMapper guestGroupMapper;
 
   @Override
   public GuestGroup save(final GuestGroup guestGroup) {
-    final GuestGroupEntity entity = jpaRepository.save(GuestGroupMapper.INSTANCE.toEntity(guestGroup));
-    return GuestGroupMapper.INSTANCE.toDomain(entity);
+    final GuestGroupEntity entity = jpaRepository.save(guestGroupMapper.toEntity(guestGroup));
+    return guestGroupMapper.toDomain(entity);
   }
 
   @Override
