@@ -20,7 +20,7 @@ public class GuestController {
   private final GuestMapper guestMapper;
 
   @GetMapping()
-  public ResponseEntity<PagedResult<GuestResponseDto>> getGuests(@RequestParam(defaultValue = "0") final int page,
+  public ResponseEntity<PagedResult<GuestResponseDto>> getGuests(@RequestParam(defaultValue = "1") final int page,
                                                                  @RequestParam(defaultValue = "10") final int size) {
     final PagedResult<GuestResponseDto> result = getGuestsUseCase.findAll(page, size)
         .map(guestMapper::toResponseDto);
