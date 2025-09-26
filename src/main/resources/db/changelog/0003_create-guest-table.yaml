@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0003_create-guest-table
+      author: ciupekradoslaw
+      changes:
+        - createTable:
+            tableName: T_GUEST_G
+            columns:
+              - column:
+                  name: G_ID
+                  type: VARCHAR2(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: G_NAME
+                  type: VARCHAR2(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: G_ATTENDING
+                  type: NUMBER(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: G_GUEST_GROUP_ID
+                  type: VARCHAR2(36)
+
+        - addForeignKeyConstraint:
+            baseTableName: T_GUEST_G
+            baseColumnNames: G_GUEST_GROUP_ID
+            referencedTableName: T_GUEST_GROUP_GG
+            referencedColumnNames: GG_ID
+            constraintName: FK_GUEST_GROUP_ID

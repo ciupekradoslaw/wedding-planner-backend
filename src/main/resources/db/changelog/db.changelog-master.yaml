@@ -1,4 +1,16 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/local/0001_insert-guest-groups-with-guests.xml
+      file: db/changelog/0001_create-user-table.yaml
       context: local
+  - include:
+      file: db/changelog/0002_create-guest-group-table.yaml
+      context: local
+  - include:
+      file: db/changelog/0003_create-guest-table.yaml
+      context: local
+  - changeSet:
+      id: 0004_insert-guest-groups-with-guests
+      author: ciupekradoslaw
+      sqlFile:
+        path: db/changelog/local/0004_insert-guest-groups-with-guests.sql
+        splitStatements: true

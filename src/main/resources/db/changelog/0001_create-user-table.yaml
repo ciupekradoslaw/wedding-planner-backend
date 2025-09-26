@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001_create-user-table
+      author: ciupekradoslaw
+      changes:
+        - createTable:
+            tableName: T_USER_U
+            columns:
+              - column:
+                  name: U_ID
+                  type: VARCHAR2(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: U_USERNAME
+                  type: VARCHAR2(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: U_PASSWORD
+                  type: VARCHAR2(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: U_ROLE
+                  type: VARCHAR2(50)
+                  constraints:
+                    nullable: false
