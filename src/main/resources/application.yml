@@ -17,7 +17,7 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.OracleDialect
     show-sql: true
     properties:

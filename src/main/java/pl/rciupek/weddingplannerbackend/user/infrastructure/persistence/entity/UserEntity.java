@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder(toBuilder = true)
@@ -23,16 +22,18 @@ import java.util.UUID;
 public class UserEntity implements UserDetails {
 
   @Id
-  @Column(nullable = false, name = "U_ID")
-  private UUID id;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(nullable = false, name = "U_ID", columnDefinition = "VARCHAR2(36)")
+  private String id;
 
-  @Column(nullable = false, name = "U_USERNAME")
+  @Column(nullable = false, name = "U_USERNAME", columnDefinition = "VARCHAR2(255)")
   private String username;
 
-  @Column(nullable = false, name = "U_PASSWORD")
+  @Column(nullable = false, name = "U_PASSWORD", columnDefinition = "VARCHAR2(255)")
   private String password;
 
   @Enumerated(EnumType.STRING)
+  @Column(nullable = false, name = "U_ROLE", columnDefinition = "VARCHAR2(50)")
   private Role role;
 
   @Override
